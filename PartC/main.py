@@ -1,16 +1,26 @@
 import student_functions
 
-print("What information would you like to see?")
-number_of_student_records = input("Would you like to see the number of student records (y/n)? ")
-column_headings = input("Would you like to see the column headings (y/n)? ")
-student_records = input("Would you like to see all the student records (y/n)? ")
 
+viewing: bool = True
+while viewing:
+    user_input = input("What information would you like to see?\n1. Number of student records\n2. Column headings\n3. All student records\n4. Quit\nAnswer: ")
+    print("\033[2J\033[H", end="") # Clear the terminal
+    if user_input in ["1", "2", "3"]:    
+        if user_input == '1':
+            print(f"Number of student records: {student_functions.number_of_student_records()}")
 
-if number_of_student_records.lower() == 'y':
-    print(f"Number of student records: {student_functions.number_of_student_records()}")
+        if user_input == '2':
+            print(f"Column headings: {student_functions.display_column_headings()}")
 
-if column_headings.lower() == 'y':
-    print(f"Column headings: {student_functions.display_column_headings()}")
+        if user_input == '3':
+            print(f"Entire file:\n{student_functions.display_all_student_records()}")
 
-if student_records.lower() == 'y':
-    print(f"Entire file:\n{student_functions.display_all_student_records()}")
+    elif user_input == '4':
+        viewing = False
+
+    else:
+        print("Invalid user input, please try again...")
+
+    print()
+
+print("Bye...")
